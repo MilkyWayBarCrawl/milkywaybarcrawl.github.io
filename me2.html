@@ -9,126 +9,7 @@
 
     <link rel="stylesheet" href="./custom/css/guide.css" />
     <!-- ME2 (amber) -->
-    <style>
-        :root{
-            --accent-r: 210; --accent-g: 150; --accent-b: 60; /* amber, slightly less yellow */
-            --accent: var(--accent-r),var(--accent-g),var(--accent-b);
-        }
-		.download-thumb {
-			width: 480px;
-			border-radius: 6px;
-			cursor: pointer;
-			transition: transform .15s ease;
-		}
-		
-		.download-thumb:hover {
-			transform: scale(1.01);
-			box-shadow: 0 0 5px rgba(var(--accent));
-		}
-		
-		.mod-card {
-			display: flex;
-			flex-direction: column;
-			gap: 14px;
-			border: 1px solid rgba(255,255,255,0.12);
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255,255,255,0.06),
-					rgba(255,255,255,0.02)
-				);
-			padding: 16px;
-			border-radius: 12px;
-		}
-		.mod-card {
-			transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		}
-
-		.mod-card:hover {
-			border-color: rgba(var(--accent),0.6);
-			box-shadow: 0 0 18px rgba(var(--accent),0.15);
-		}
-
-		.mod-header {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-		}
-
-		.mod-header h4 {
-			margin: 0;
-			font-size: 1.2rem;
-		}
-
-		.mod-header a {
-			color: #fff;
-			text-decoration: underline;
-			font-weight: 500;
-			transition: color 0.2s ease;
-		}
-
-		.mod-header a:hover {
-			color: rgb(var(--accent));
-		}
-
-		.mod-author {
-			font-size: 0.9rem;
-			opacity: 0.7;
-		}
-
-		.mod-description {
-			line-height: 1.5;
-		}
-
-		.mod-note {
-			font-family: 'Quicksand';
-			padding: 10px;
-			border-radius: 8px;
-			background: rgba(var(--accent),0.12);
-			border-left: 3px solid rgb(var(--accent));
-		}
-		
-		.mod-header a {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.35rem;
-		}
-		
-		.mod-header a svg {
-			width: 0.95em;
-			height: 0.95em;
-			flex-shrink: 0;
-			opacity: 0.75;
-			transition: opacity .2s ease, transform .2s ease;
-		}
-		
-		.mod-header a:hover svg {
-			opacity: 1;
-			transform: translateY(-1px);
-		}
-		
-		.mod-header a[target="_blank"]::after {
-			content: "";
-			display: inline-block;
-
-			width: 0.95em;
-			height: 0.95em;
-			margin-right: 0.05em;
-
-			background-color: currentColor;
-			mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			-webkit-mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			mask-size: contain;
-			-webkit-mask-size: contain;
-
-			opacity: .75;
-			transition: opacity .2s ease;
-		}
-
-		.mod-header a:hover::after {
-			opacity: 1;
-		}
-    </style>
+	<link rel="stylesheet" href="./custom/css/me2.css" />
 </head>
 <body>
 
@@ -253,7 +134,7 @@
 								<b>Omega Sling:</b> Bold, smooth, and dangerously intoxicating - a stylish rush through the galaxy's underworld.<br><br>
 								<em>Download it directly here (by clicking on the image):</em><br>
 								
-								<a href="./files/Omega Sling (Milky Way Bar Crawl).biq2" download>
+								<a href="./files/(MWBC 07-2026) Omega Sling.biq2" download>
 									<img src="./custom/img/guide-omega-2.webp" 
 										 alt="Omega Sling Batch File" 
 										 title="Click Me!" 
@@ -262,7 +143,7 @@
 								<br>
 								
 								<em>or from the Nexus page:</em><br>
-								<em>(Nexus link to my guide once it's online)</em><br><br>
+								<b><u><a href="https://nexusmods.com/masseffectlegendaryedition/mods/3348" target="_blank">Click Me!</a></u></b><br><br>
 							</p>
 							
 							<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
@@ -420,7 +301,28 @@
 									<b>Note 2:</b> If you're curious about the interactive comic, you can leave the prompt to view it intact.
 								</div>
 							</div>
-
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
+							<div id="no-head" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/377" target="_blank">
+											No Headgear for Squadmates
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/stasismind" target="_blank">stasismind</a>
+									</div>
+								</div>
+								
+								<div class="mod-description text-standard">
+									Removes the headgear from your squadmates Alternate Appearance Pack armors.
+								</div>
+							</div>
+							
 							<br>
                             <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br> -->
@@ -1257,9 +1159,6 @@
 									<b>Note 1:</b> You have two options here. Personally I recommend her LE3 appearance to have her be consistent throughout the trilogy.<br>
 								</div>
 								<div class="mod-note">
-									<b>Note 2:</b> If you want to texture mod your game later grab the optional file matching your preference.<br>
-								</div>
-								<div class="mod-note">
 									<b>Note 3:</b> If you plan on following the Textures section later, the LE3 version is required.
 								</div>
 							</div>
@@ -1530,6 +1429,118 @@
                             <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br> -->
 							
+							<div id="imp-nor" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/874" target="_blank">
+											Improved Normandy Crash Site Flashback Textures
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/Audemus" target="_blank">Audemus</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Updates the flashback images shown during the Normandy Crash Site DLC.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
+							<div id="kai-ash" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/1799" target="_blank">
+											Kaidan and Ashley LE3 Armors for Horizon
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/Marcus22Khaar" target="_blank">Marcus22Khaar</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Backports Kaidan's and Ashley's iconic armors for Horizon.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
+							<div id="sub-tle" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/3257" target="_blank">
+											Subtle Ammo Icons
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/halfadder" target="_blank">halfadder</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Less flashy ammo icons for all ammo types.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
+							<div id="exp-le2" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/2535" target="_blank">
+											Extended Galaxy Map LE2 (BETA)
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/Marcus22Khaar" target="_blank">Marcus22Khaar</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									 Explore, scan and mine the entirety of the trilogy's planets, moons, systems and clusters.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
+							<div id="pin-apartment" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/2536" target="_blank">
+											Interactive Intai'sei Apartment (LE2)
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/Marcus22Khaar" target="_blank">Marcus22Khaar</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Lets you visit the apartment you earned by completing Pinnacle Station in LE1.
+								</div>
+								
+								<div class="mod-note">
+									<b>Note 1:</b> Requires Extended Galaxy Map LE2 with an option that includes the ME1 clusters.
+								</div>
+								<div class="mod-note">
+									<b>Note 2:</b> Also requires an imported save that completed the <i><u><a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/832" target="_blank">Pinnacle Station</a></u></i> mod, otherwise you can't access it.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
 							<div id="me-videos" class="mod-card anchor" data-parent="manual">
 								<div class="mod-header">
 									<h4>
@@ -1543,8 +1554,8 @@
 								</div>
 
 								<div class="mod-description text-standard">
-									Manually upscaled all pre-rendered videos in the game to 4k60fps.<br>
-									The work done here is really impressive, across both OT and LE.
+									Upscales every pre-rendered scene in the trilogy to 4K 60FPS.<br>
+									A monumental effort involving scene-by-scene restortation, artifact cleanup, modern Bink 2 encoding, and even recreating some cinematics in-engine.
 								</div>
 							</div>
 							

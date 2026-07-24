@@ -9,143 +9,13 @@
     
     <link rel="stylesheet" href="./custom/external/glightbox/dist/css/glightbox.css" />
     <link rel="stylesheet" href="./custom/css/guide.css" />
-    <style>
-    :root{
-        --accent-r: 145; --accent-g: 90; --accent-b: 180; /* soft violet */
-        --accent: var(--accent-r),var(--accent-g),var(--accent-b);
-    }
-	
-			.mod-card {
-			display: flex;
-			flex-direction: column;
-			gap: 14px;
-			border: 1px solid rgba(255,255,255,0.12);
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255,255,255,0.06),
-					rgba(255,255,255,0.02)
-				);
-			padding: 16px;
-			border-radius: 12px;
-		}
-		.mod-card {
-			transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		}
-
-		.mod-card:hover {
-			border-color: rgba(var(--accent),0.6);
-			box-shadow: 0 0 18px rgba(var(--accent),0.15);
-		}
-
-		.mod-header {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-		}
-
-		.mod-header h4 {
-			margin: 0;
-			font-size: 1.2rem;
-		}
-
-		.mod-header a {
-			color: #fff;
-			text-decoration: underline;
-			font-weight: 500;
-			transition: color 0.2s ease;
-		}
-
-		.mod-header a:hover {
-			color: rgb(var(--accent));
-		}
-
-		.mod-author {
-			font-size: 0.9rem;
-			opacity: 0.7;
-		}
-
-		.mod-description {
-			line-height: 1.5;
-		}
-
-		.mod-note {
-			font-family: 'Quicksand';
-			padding: 10px;
-			border-radius: 8px;
-			background: rgba(var(--accent),0.12);
-			border-left: 3px solid rgb(var(--accent));
-		}
-		
-		.mod-header a {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.35rem;
-		}
-		
-		.mod-header a svg {
-			width: 0.95em;
-			height: 0.95em;
-			flex-shrink: 0;
-			opacity: 0.75;
-			transition: opacity .2s ease, transform .2s ease;
-		}
-		
-		.mod-header a:hover svg {
-			opacity: 1;
-			transform: translateY(-1px);
-		}
-		
-		.mod-header a[target="_blank"]::after {
-			content: "";
-			display: inline-block;
-
-			width: 0.95em;
-			height: 0.95em;
-			margin-right: 0.05em;
-
-			background-color: currentColor;
-			mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			-webkit-mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			mask-size: contain;
-			-webkit-mask-size: contain;
-
-			opacity: .75;
-			transition: opacity .2s ease;
-		}
-
-		.mod-header a:hover::after {
-			opacity: 1;
-		}
-		
-		.texture-table {
-			width: 100%;
-			border-collapse: collapse;
-			margin: 12px 0;
-		}
-
-		.texture-table th,
-		.texture-table td {
-			border: 1px solid rgba(255,255,255,.12);
-			padding: 8px 10px;
-			vertical-align: top;
-		}
-
-		.texture-table th {
-			text-align: left;
-			font-weight: 600;
-		}
-
-		.texture-table code {
-			white-space: nowrap;
-		}
-    </style>
+	<link rel="stylesheet" href="./custom/css/textures.css" />
 </head>
 <body>
 
     <!-- Background (single reliable layer) -->
     <div class="bg-viewport" aria-hidden="true">
-        <div id="bgLayer" class="bg-layer" style="background-image:url('./custom/img/background/bg-extra.webp');"></div>
+        <div id="bgLayer" class="bg-layer" style="background-image:url('./custom/img/background/bg-extra-2-c4.webp');"></div>
     </div>
     <div class="bg-vignette" aria-hidden="true"></div>
 
@@ -258,7 +128,7 @@
 											Texture modding your game(s) should be the very last step for your mod list.<br>
 											If something goes wrong or you decide to ignore my warnings and try to install content mods after this your game <b>will</b> break.<br>
 											You might think these warnings excessive but believe you me if anyone comes to me complaining about this I will be very...!<br>
-											*flips through a thesaurus* ...roiled!
+											hmm... roiled!
 											</p>
 										</div>
 									</div>
@@ -345,13 +215,22 @@
 							<br>
 							<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br>
-
+							
 							<p class="text-standard">
+								<b>A choice stands before you.</b> Two popular texture mods dominate the scene: <b>LEUITM</b> and <b>Primitives</b>.
+								<br>
+								Each pursues a different goal. <b>LEUITM</b> aims to bring characters more in line with their LE3 appearance, while <b>Primitives</b> tells a visual story by gradually aging both humans and asari as the trilogy gets darker.
+								<br><br>
+								<b>Personally, I prefer LEUITM</b> and recommend it if you want the simplest setup with the broadest coverage.
+								<br>
+								<b>If both appeal to you</b>, however, then look towards the "I Want Both" section below which will explain how to combine both mods.
+							</p>
+							<!-- <p class="text-standard">
 								<b>A choice stands before you.</b> I recommend two popular texture mods that both improve character visuals: <b>LEUITM</b> and <b>Primitives</b>.<br>
 								Each has its strengths: <b>LEUITM</b> aims to bring characters in line with their LE3 look. <b>Primitives</b> focuses on telling a story by making humans and asari visually age as each game becomes darker.<br><br>
 								If you'd rather keep things simple, stick with <b>LEUITM</b> since it provides broader coverage overall.<br>
 								Otherwise, check the setup below for how to combine both mods effectively.
-							</p>
+							</p> -->
 							
 							<br>
 							
@@ -368,14 +247,18 @@
 								</div>
 
 								<div class="mod-description text-standard">
-									Lore-friendly HD textures for characters as well as some environmental fixes.
+									Lore-friendly HD textures for characters, as well as some environmental fixes.
 								</div>
 								
 								<div class="mod-note">
-									<b>Note 1:</b> Only select one file per category (for example, choose <code>WrexVanillaStyleLEUITM.mem</code> <i>or</i> <code>WrexBattleHardenedLEUITM.mem</code>).<br>
+									<b>Note 1:</b> Select only one file per category. For example, choose <code>WrexVanillaStyleLEUITM.mem</code> <i>or</i> <code>WrexBattleHardenedLEUITM.mem</code>.<br>
 								</div>
 								<div class="mod-note">
-									<b>Note 2:</b> If you're using <b>LE1 Diversification Project</b>, select <code>AsariLE1DPCompatLEUITM.mem</code> from the three Asari options.
+									<b>Note 2:</b> If you are using <b>LE1 Diversification Project</b>, select <code>AsariLE1DPCompatLEUITM.mem</code> from the three Asari options.
+								</div>
+								<div class="mod-note">
+									<b>Note 3:</b> Skip any files that overlap with another mod you are using. For example, if you are using Liara Consistency Mod, her textures are already being replaced, so you can skip all files beginning with <code>Liara</code>.<br><br>
+									Players who have been using my mod batch file can skip: <code>AndersonLEUITM.mem, HumanEyesLEUITM.mem (Preference), LiaraLEUITM.mem, LiaraLOTSBLEUITM.mem</code>
 								</div>
 							</div>
 
@@ -514,37 +397,17 @@
 							</div>
 
 							<br>
-
-							<div id="le2-crash" class="mod-card anchor" data-parent="me2">
-								<div class="mod-header">
-									<h4>
-										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/874" target="_blank">
-											Improved Normandy Crash Site Flashback Textures
-										</a>
-									</h4>
-									<div class="mod-author">
-										By: <a href="https://www.nexusmods.com/profile/Audemus" target="_blank">Audemus</a>
-									</div>
-								</div>
-
-								<div class="mod-description text-standard">
-									Updates the flashback images shown during the Normandy Crash Site DLC.
-								</div>
-
-								<div class="mod-note">
-									<b>Note:</b> This mod uses the new Texture Override system, so it is installed like a regular content mod. I've still listed it here for the sake of consistency.
-								</div>
-							</div>
-
-							<br>
 							<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br>
 
 							<p class="text-standard">
-								A choice stands before you. I recommend two popular texture mods that both improve character visuals: <b>LEUITM2</b> and <b>Primitives</b>.<br>
-								Each has its strengths: <b>LEUITM2</b> aims to bring characters in line with their LE3 look. <b>Primitives</b> focuses on telling a story by making humans and asari visually age as each game becomes darker.<br><br>
-								If you'd rather keep things simple, stick with <b>LEUITM2</b> since it provides broader coverage overall.<br>
-								Otherwise, check the setup below for how to combine both mods effectively.
+								<b>A choice stands before you.</b> Two popular texture mods dominate the scene: <b>LEUITM2</b> and <b>Primitives</b>.
+								<br>
+								Each pursues a different goal. <b>LEUITM2</b> aims to bring characters more in line with their LE3 appearance, while <b>Primitives</b> tells a visual story by gradually aging both humans and asari as the trilogy gets darker.
+								<br><br>
+								<b>Personally, I prefer LEUITM2</b> and recommend it if you want the simplest setup with the broadest coverage.
+								<br>
+								<b>If both appeal to you</b>, however, then look towards the "I Want Both" section below which will explain how to combine both mods.
 							</p>
 							
 							<br>
@@ -562,11 +425,15 @@
 								</div>
 
 								<div class="mod-description text-standard">
-									Lore-friendly HD textures for characters.
+									Lore-friendly HD textures for characters, as well as some environmental fixes.
 								</div>
 								
 								<div class="mod-note">
-									<b>Note:</b> Only select one file per category (for example, choose <code>WrexLEUITM2.mem</code> <i>or</i> <code>WrexBattleHardenedLEUITM2.mem</code>).
+									<b>Note 1:</b> Select only one file per category. For example, choose <code>WrexLEUITM2.mem</code> <i>or</i> <code>WrexBattleHardenedLEUITM2.mem</code>.<br>
+								</div>
+								<div class="mod-note">
+									<b>Note 2:</b> Skip any files that overlap with another mod you are using. For example, if you are using Liara Consistency Mod, her textures are already being replaced, so you can skip all files beginning with <code>Liara</code>.<br><br>
+									Players who have been using my mod batch file can skip: <code>AndersonLEUITM2.mem, AriaLEUITM2.mem, Human_Eyes_LEUITM2.mem (Preference), LiaraArmorLEUITM2.mem, LiaraFaceLOTSBStyleLEUITM2.mem, LiaraFaceME1StyleStyleLEUITM2.mem, LiaraFaceOGTransitionLEUITM2.mem</code>
 								</div>
 							</div>
 
@@ -756,6 +623,10 @@
 
 								<div class="mod-description text-standard">
 									Overhauls Miranda's appearance, including a choice of new outfits.
+								</div>
+								
+								<div class="mod-note">
+									<b>Note:</b> If you are using Miranda Mod there is a good chance you need to reinstall it and deselect "Miranda Outfits (NPC File)"
 								</div>
 							</div>
                             

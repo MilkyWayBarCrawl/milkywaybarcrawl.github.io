@@ -1,7 +1,7 @@
-/* =========================================================================
+/* =========
 	Milky Way Bar Crawl: Guide JS (clean rewrite)
 	- pain
-	========================================================================= */
+	======== */
 
 /* ---------- Background helper ---------- */
 let bgLayer = document.getElementById('bgLayer');
@@ -36,9 +36,9 @@ const prevPageBtn = $('#prevPageBtn');
 const nextPageBtn = $('#nextPageBtn');
 const chapList = $('#chapList');
 
-/* ========================================================================
+/* ===========================
 	PAGE SEQUENCE (Prev/Next)
-	======================================================================= */
+	========================== */
 function resolveHrefToBasename(href) {
 	try {
 		const url = new URL(href, window.location.href);
@@ -159,9 +159,9 @@ nextPageBtn && nextPageBtn.addEventListener('click', (e) => {
 	}
 });
 
-/* ========================================================================
+/* =========================
 	PANELS & RIGHT CONTENTS
-	======================================================================= */
+	======================== */
 function getPanels() {
 	return contentBox ? $$('.panel', contentBox) : [];
 }
@@ -464,9 +464,9 @@ function updateActivePanel(index) {
 	updatePageNavStates();
 }
 
-/* ========================================================================
+/* =========================================
 	REBUILD (once, and on very few triggers)
-	======================================================================= */
+	======================================== */
 function rebuildAll() {
 	panels = getPanels();
 	panels.forEach((p, i) => {
@@ -587,9 +587,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
-/* ========================================================================
+/* ===================
 	EXPAND/CLOSE ALL
-	======================================================================= */
+	================== */
 function expandAllPanels() {
 	const panels = getPanels();
 	panels.forEach(p => {
@@ -655,9 +655,9 @@ closeAllBtn && closeAllBtn.addEventListener('click', (e) => {
 	});
 })();
 
-/* ========================================================================
+/* =======================================
 	DEBUG HELPERS (unchanged API surface)
-	======================================================================= */
+	====================================== */
 window.__STEP = {
 	getPanels,
 	openPanel: (i) => openPanel(i, { closeOthers: true, scrollOnOpen: true, behavior: 'smooth' }),
@@ -672,9 +672,9 @@ window.__STEP = {
 	findCurrentNavIndex: () => findCurrentNavIndex(getLeftNavSequence())
 };
 
-/* ========================================================================
+/* =================
 	CAROUSEL BLOCK
-	======================================================================= */
+	================ */
 // -------------------- Informational carousel (stable live-sync, race-hardened) --------------------
 (function () {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -793,7 +793,7 @@ window.__STEP = {
 			let idx = 0;
 			let lightboxInstance = null;
 			let lightboxOpen = false;
-			let lastRequestedOpenIndex = null; // set when we call openAt/open programmatically
+			let lastRequestedOpenIndex = null; // set when to call openAt/open programmatically
 			let isSyncingFromLightbox = false; // guard to avoid feedback loop
 			const anchors = Array.from(carousel.querySelectorAll('a.glightbox'));
 			const galleryName = `mwbc-carousel-${cIndex}`;
@@ -842,7 +842,7 @@ window.__STEP = {
 			bindArrow(prev, 'prev');
 			bindArrow(next, 'next');
 
-			// keyboard nav for viewport — IGNORE when lightbox is open
+			// keyboard nav for viewport. IGNORE when lightbox is open
 			if (viewport && !viewport._mwbc_kbd) {
 				viewport.addEventListener('keydown', (ev) => {
 					if (lightboxOpen) return; // prevent double handling when modal has focus
@@ -927,7 +927,7 @@ window.__STEP = {
 			// safe push to LB
 			function safeLightboxGoTo(n) {
 				if (!lightboxOpen || !lightboxInstance) return;
-				// avoid pushing if just requested this open (debounce)
+				// avoid pushing if I just requested this open (debounce)
 				if (lastRequestedOpenIndex !== null && lastRequestedOpenIndex === n) return;
 				try {
 					if (typeof lightboxInstance.getActiveSlideIndex === 'function') {

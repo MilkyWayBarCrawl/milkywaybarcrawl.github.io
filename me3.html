@@ -9,126 +9,7 @@
 
     <link rel="stylesheet" href="./custom/css/guide.css" />
     <!-- ME3 (muted red) -->
-    <style>
-      :root{
-        --accent-r: 200; --accent-g: 60; --accent-b: 65; /* slightly softer red */
-        --accent: var(--accent-r),var(--accent-g),var(--accent-b);
-      }
-		.download-thumb {
-			width: 480px;
-			border-radius: 6px;
-			cursor: pointer;
-			transition: transform .15s ease;
-		}
-		
-		.download-thumb:hover {
-			transform: scale(1.01);
-			box-shadow: 0 0 5px rgba(var(--accent));
-		}
-		
-		.mod-card {
-			display: flex;
-			flex-direction: column;
-			gap: 14px;
-			border: 1px solid rgba(255,255,255,0.12);
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255,255,255,0.06),
-					rgba(255,255,255,0.02)
-				);
-			padding: 16px;
-			border-radius: 12px;
-		}
-		.mod-card {
-			transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		}
-
-		.mod-card:hover {
-			border-color: rgba(var(--accent),0.6);
-			box-shadow: 0 0 18px rgba(var(--accent),0.15);
-		}
-
-		.mod-header {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-		}
-
-		.mod-header h4 {
-			margin: 0;
-			font-size: 1.2rem;
-		}
-
-		.mod-header a {
-			color: #fff;
-			text-decoration: underline;
-			font-weight: 500;
-			transition: color 0.2s ease;
-		}
-
-		.mod-header a:hover {
-			color: rgb(var(--accent));
-		}
-
-		.mod-author {
-			font-size: 0.9rem;
-			opacity: 0.7;
-		}
-
-		.mod-description {
-			line-height: 1.5;
-		}
-
-		.mod-note {
-			font-family: 'Quicksand';
-			padding: 10px;
-			border-radius: 8px;
-			background: rgba(var(--accent),0.12);
-			border-left: 3px solid rgb(var(--accent));
-		}
-		
-		.mod-header a {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.35rem;
-		}
-		
-		.mod-header a svg {
-			width: 0.95em;
-			height: 0.95em;
-			flex-shrink: 0;
-			opacity: 0.75;
-			transition: opacity .2s ease, transform .2s ease;
-		}
-		
-		.mod-header a:hover svg {
-			opacity: 1;
-			transform: translateY(-1px);
-		}
-		
-		.mod-header a[target="_blank"]::after {
-			content: "";
-			display: inline-block;
-
-			width: 0.95em;
-			height: 0.95em;
-			margin-right: 0.05em;
-
-			background-color: currentColor;
-			mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			-webkit-mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			mask-size: contain;
-			-webkit-mask-size: contain;
-
-			opacity: .75;
-			transition: opacity .2s ease;
-		}
-
-		.mod-header a:hover::after {
-			opacity: 1;
-		}
-    </style>
+	<link rel="stylesheet" href="./custom/css/me3.css" />
 </head>
 <body>
 
@@ -253,7 +134,7 @@
 								<b>Purgatory on the Rocks:</b> Dark, burning, and bittersweet - one last drink at the edge of all things.<br><br>
 								<em>Download it directly here (by clicking on the image):</em><br>
 								
-								<a href="./files/Purgatory on the Rocks (Milky Way Bar Crawl).biq2" download>
+								<a href="./files/(MWBC 07-2026) Purgatory on the Rocks.biq2" download>
 									<img src="./custom/img/guide-purgatory-2.webp" 
 										 alt="Purgatory on the Rocks Batch File" 
 										 title="Click Me!" 
@@ -262,7 +143,7 @@
 								<br>
 								
 								<em>or from the Nexus page:</em><br>
-								<em>(Nexus link to my guide once it's online)</em><br><br>
+								<b><u><a href="https://nexusmods.com/masseffectlegendaryedition/mods/3348" target="_blank">Click Me!</a></u></b><br><br>
 							</p>
 							
 							<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
@@ -951,7 +832,7 @@
 										</a>
 									</h4>
 									<div class="mod-author">
-										By: Tydeous (currently maintained by <a href="https://www.nexusmods.com/profile/deadspear1" target="_blank">deadspear1</a>)
+										By: Tydeous and Mellin (currently maintained by <a href="https://www.nexusmods.com/profile/deadspear1" target="_blank">deadspear1</a>)
 									</div>
 								</div>
 
@@ -1204,6 +1085,27 @@
                             <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br> -->
 							
+							<div id="sub-tle" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/3257" target="_blank">
+											Subtle Ammo Icons
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/halfadder" target="_blank">halfadder</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Less flashy ammo icons for all ammo types.
+								</div>
+							</div>
+							
+							<br>
+                            <!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
 							<div id="le3-op" class="mod-card anchor" data-parent="manual">
 								<div class="mod-header">
 									<h4>
@@ -1236,10 +1138,18 @@
 										By: <a href="https://www.nexusmods.com/profile/Audemus" target="_blank">Audemus</a> and ALOV Team
 									</div>
 								</div>
-
+								
 								<div class="mod-description text-standard">
-									Manually upscaled all pre-rendered videos in the game to 4k60fps.<br>
+									Upscales every pre-rendered scene in the trilogy to 4K 60FPS.<br>
+									A monumental effort involving scene-by-scene restortation, artifact cleanup, modern Bink 2 encoding, and even recreating some cinematics in-engine.
+								</div>
+								<!-- <div class="mod-description text-standard">
+									Upscales every pre-rendered video in the trilogy to 4K 60 FPS, greatly improving visual quality while preserving the originals.<br>
 									The work done here is really impressive, across both OT and LE.
+								</div> -->
+								
+								<div class="mod-note">
+									<b>Note:</b> At 18GB, this is by far the biggest mod on the list and will take a very long time to download. If possible, consider a month of Nexus Premium or use the provided torrent.
 								</div>
 							</div>
 							

@@ -9,127 +9,7 @@
 
     <link rel="stylesheet" href="./custom/css/guide.css" />
     <!-- ME1 (blue) -->
-    <style>
-        :root{
-            --accent-r: 60;  --accent-g: 130; --accent-b: 220; /* classic ME1 blue */
-            --accent: var(--accent-r),var(--accent-g),var(--accent-b);
-        }
-		
-		.download-thumb {
-			width: 480px;
-			border-radius: 6px;
-			cursor: pointer;
-			transition: transform .15s ease;
-		}
-		
-		.download-thumb:hover {
-			transform: scale(1.01);
-			box-shadow: 0 0 5px rgba(var(--accent));
-		}
-		
-		.mod-card {
-			display: flex;
-			flex-direction: column;
-			gap: 14px;
-			border: 1px solid rgba(255,255,255,0.12);
-			background:
-				linear-gradient(
-					180deg,
-					rgba(255,255,255,0.06),
-					rgba(255,255,255,0.02)
-				);
-			padding: 16px;
-			border-radius: 12px;
-		}
-		.mod-card {
-			transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		}
-
-		.mod-card:hover {
-			border-color: rgba(var(--accent),0.6);
-			box-shadow: 0 0 18px rgba(var(--accent),0.15);
-		}
-
-		.mod-header {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-		}
-
-		.mod-header h4 {
-			margin: 0;
-			font-size: 1.2rem;
-		}
-
-		.mod-header a {
-			color: #fff;
-			text-decoration: underline;
-			font-weight: 500;
-			transition: color 0.2s ease;
-		}
-
-		.mod-header a:hover {
-			color: rgb(var(--accent));
-		}
-
-		.mod-author {
-			font-size: 0.9rem;
-			opacity: 0.7;
-		}
-
-		.mod-description {
-			line-height: 1.5;
-		}
-
-		.mod-note {
-			font-family: 'Quicksand';
-			padding: 10px;
-			border-radius: 8px;
-			background: rgba(var(--accent),0.12);
-			border-left: 3px solid rgb(var(--accent));
-		}
-		
-		.mod-header a {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.35rem;
-		}
-		
-		.mod-header a svg {
-			width: 0.95em;
-			height: 0.95em;
-			flex-shrink: 0;
-			opacity: 0.75;
-			transition: opacity .2s ease, transform .2s ease;
-		}
-		
-		.mod-header a:hover svg {
-			opacity: 1;
-			transform: translateY(-1px);
-		}
-		
-		.mod-header a[target="_blank"]::after {
-			content: "";
-			display: inline-block;
-
-			width: 0.95em;
-			height: 0.95em;
-			margin-right: 0.05em;
-
-			background-color: currentColor;
-			mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			-webkit-mask: url("./custom/img/guide/guide-external.svg") no-repeat center;
-			mask-size: contain;
-			-webkit-mask-size: contain;
-
-			opacity: .75;
-			transition: opacity .2s ease;
-		}
-
-		.mod-header a:hover::after {
-			opacity: 1;
-		}
-    </style>
+	<link rel="stylesheet" href="./custom/css/me1.css" />
 </head>
 <body>
 
@@ -256,7 +136,7 @@
 								<b>Flux Fizz:</b> A crisp, spirited opener - refreshing the legend from the very first sip.<br><br>
 								<em>Download it directly here (by clicking on the image):</em><br>
 								
-								<a href="./files/Flux Fizz Lite (Milky Way Bar Crawl).biq2" download>
+								<a href="./files/(MWBC 07-2026) Flux Fizz.biq2" download>
 									<img src="./custom/img/guide-flux-2.webp" 
 										 alt="Flux Fizz Batch File" 
 										 title="Click Me!" 
@@ -265,7 +145,7 @@
 								<br>
 								
 								<em>or from the Nexus page:</em><br>
-								<em>(Nexus link to my guide once it's online)</em><br><br>
+								<b><u><a href="https://nexusmods.com/masseffectlegendaryedition/mods/3348" target="_blank">Click Me!</a></u></b><br><br>
 							</p>
 							
 							<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
@@ -367,7 +247,7 @@
 								
 								<div class="mod-description text-standard">
 									Replaces the font used throughout the game with something more fitting for the setting.<br>
-									It also optionally recolors the conversation wheel so each game gets its own color. For LE1 specifically it is changed to teal, which I think complements the game extremely well.
+									It also recolors the conversation wheel to a teal color, so each game gets its own color identity.
 								</div>
 								
 								<div class="mod-note">
@@ -631,8 +511,7 @@
 								</div>
 
 								<div class="mod-description text-standard">
-									You and your squadmates wear casual outfits during Hub visits (e.g. Citadel) instead of armor.<br>
-									Weapons will remain equipped on your character since the first game had occasional Hub fights which might look a bit goofy but honestly it's worth it.
+									You and your squadmates wear casual outfits during Hub visits (e.g. Citadel) instead of armor.
 								</div>
 							</div>
 							
@@ -903,7 +782,7 @@
 								</div>
 
 								<div class="mod-note">
-									<b>Note:</b> This mod has a lot of options. Personally I enjoy robes with fewer implants during the Prologue and the Council hearing.
+									<b>Note:</b> This mod offers a lot of options through the in-game Mod Settings menu.<br>Personally I enjoy "Robes/Less Implants/Yellow Eyes" during the Prologue and the Citadel hearing, and "Armor/Less Implants" on Virmire.
 								</div>
 							</div>
 							
@@ -1078,6 +957,27 @@
 							<!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
 							<br> -->
 							
+							<div id="me-datapad" class="mod-card anchor" data-parent="manual">
+								<div class="mod-header">
+									<h4>
+										<a href="https://www.nexusmods.com/masseffectlegendaryedition/mods/2604" target="_blank">
+											LE1 Datapads Collection
+										</a>
+									</h4>
+									<div class="mod-author">
+										By: <a href="https://www.nexusmods.com/profile/MajorKirrahe89" target="_blank">MajorKirrahe89</a>
+									</div>
+								</div>
+
+								<div class="mod-description text-standard">
+									Adds around 80 new, lore-friendly datapads all over the game which breathe more life into the universe by highlighting the daily lives of its people.
+								</div>
+							</div>
+							
+							<br>
+							<!-- <hr style="color:#fff;width:99%;text-align:left;margin-left:0">
+							<br> -->
+							
 							<div id="spec-tre" class="mod-card anchor" data-parent="manual">
 								<div class="mod-header">
 									<h4>
@@ -1117,7 +1017,7 @@
 
 								<div class="mod-description text-standard">
 									The LE added a yellow filter to Feros that this mod removes.<br>
-									Personal preference, really. It just reminds me way too much of those seventh-generation "piss filters."
+									Personal preference, really. It just reminds me way too much of those seventh-gen filters.
 								</div>
 							</div>
 							
@@ -1159,8 +1059,8 @@
 								</div>
 
 								<div class="mod-description text-standard">
-									Manually upscaled all pre-rendered videos in the game to 4K60 FPS.<br>
-									The work done here is really impressive, across both the original trilogy and Legendary Edition.
+									Upscales every pre-rendered scene in the trilogy to 4K 60FPS.<br>
+									A monumental effort involving scene-by-scene restortation, artifact cleanup, modern Bink 2 encoding, and even recreating some cinematics in-engine.
 								</div>
 							</div>
 							
