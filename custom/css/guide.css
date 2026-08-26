@@ -1,8 +1,5 @@
-/* guide.css - Optimization Attempt 1
-- Changed all backdrop-filter/saturate values as follows:
-9 -> 6
-10 -> 7
-115%/120% -> 110%
+/* guide.css - Optimization Experiment 1
+- Removed all blur effects and tried to approximate them with other things
 */
 
 @font-face {
@@ -33,12 +30,16 @@
 	--pager-h: 66px;
 	--gutter: 14px;
 
-	/* Glass system (tweak these) */
-	--glass-bg: rgba(7, 12, 20, 0.36); /* conservative dark glass */
-	--glass-bg-soft: rgba(255, 255, 255, 0.04);
-	--glass-border: rgba(255, 255, 255, 0.06);
+	/* Glass system - Tweaked to fit with Optimization Experiment 1 */
+	--glass-bg: rgba(7, 12, 20, 0.55);
+	--glass-soft: rgba(255, 255, 255, 0.02);
+	--glass-border: rgba(255, 255, 255, 0.08);
 	--glass-border-strong: rgba(0, 0, 0, 0.45);
-	--glass-overlay: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(255,255,255,0.02));
+	--glass-overlay: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0.10),
+		rgba(255, 255, 255, 0.01)
+	);
 
 	/* Accent color as three channel components so pages can override easily.
 	   Default is a slightly darker orange for better contrast. */
@@ -106,10 +107,6 @@ a {
 	background-position: center center;
 	background-size: cover;
 	opacity: 1;
-	filter: blur(2px);
-	/*transition: filter 400ms ease, transform 600ms linear;
-	will-change: transform;
-	transform: translateZ(0);*/
 }
 
 /* Tunable vignette */
@@ -144,7 +141,7 @@ a {
 .glass {
 	position: relative;
 	background: var(--glass-bg);
-	backdrop-filter: blur(6px) saturate(110%);
+	/*backdrop-filter: blur(4px) saturate(110%);*/
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -178,7 +175,7 @@ a {
 /* LEFT */
 .left-panel {
 	background: var(--glass-bg);
-	backdrop-filter: blur(6px) saturate(110%);
+	/*backdrop-filter: blur(4px) saturate(110%);*/
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -387,7 +384,7 @@ a {
 	width: 100%;
 	height: var(--title-h);
 	background: var(--glass-bg);
-	backdrop-filter: blur(7px) saturate(110%);
+	/*backdrop-filter: blur(5px) saturate(110%);*/
 	border: 1px solid var(--glass-border);
 	border-radius: 12px;
 	border-bottom-left-radius: 0;
@@ -422,7 +419,7 @@ a {
 	height: 240%;
 	background-position: center center;
 	background-size: cover;
-	filter: blur(6px) saturate(120%);
+	/* filter: blur(4px) saturate(110%); */
 	opacity: 0.9;
 	z-index: 1;
 	pointer-events: none;
@@ -439,7 +436,7 @@ a {
 
 .content-box {
 	background: var(--glass-bg);
-	backdrop-filter: blur(7px) saturate(110%);
+	/*backdrop-filter: blur(5px) saturate(110%);*/
 	border: 1px solid var(--glass-border);
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -690,7 +687,7 @@ a {
 	width: 100%;
 	height: var(--pager-h);
 	background: var(--glass-bg);
-	backdrop-filter: blur(7px) saturate(110%);
+	/*backdrop-filter: blur(4px) saturate(110%);*/
 	border: 1px solid var(--glass-border);
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -805,7 +802,7 @@ a {
 
 .contents-panel {
 	background: var(--glass-bg);
-	backdrop-filter: blur(6px) saturate(110%);
+	/*backdrop-filter: blur(4px) saturate(110%);*/
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -877,7 +874,7 @@ a {
 /* made-by: now uses accent color for heart & name by default */
 .made-by {
 	background: var(--glass-bg);
-	backdrop-filter: blur(6px) saturate(110%);
+	/* backdrop-filter: blur(6px) saturate(110%); */
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 8px 12px;
@@ -1114,7 +1111,7 @@ body.accessible-fonts .content-box h5 {
 
 .terminology-table thead th {
 	background: rgba(255, 255, 255, 0.08);
-	backdrop-filter: blur(6px);
+	backdrop-filter: blur(4px);
 	font-weight: 600;
 }
 
@@ -1136,7 +1133,7 @@ body.accessible-fonts .content-box h5 {
 #glightbox .gdesc,
 #glightbox .gdesc-inner {
 	background: var(--glass-bg);
-	backdrop-filter: blur(10px) saturate(120%);
+	/*backdrop-filter: blur(8px) saturate(110%);*/
 	border: 1px solid var(--glass-border);
 	color: #eaf4ff;
 	font-family: 'Quicksand', sans-serif;
@@ -1226,8 +1223,8 @@ body.accessible-fonts .content-box h5 {
 /* style the inner caption card as glass panel */
 .gcontainer .gdesc-inner {
 	background: var(--glass-bg) !important;
-	backdrop-filter: blur(10px) saturate(120%) !important;
-	-webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+	/*backdrop-filter: blur(8px) saturate(110%) !important;
+	-webkit-backdrop-filter: blur(8px) saturate(110%) !important;*/
 	border: 1px solid var(--glass-border) !important;
 	border-top-left-radius: 0 !important;   /* visually attached to image above */
 	border-top-right-radius: 0 !important;
@@ -1569,3 +1566,28 @@ body.accessible-fonts .content-box h5 {
     opacity: 0.75;
 }
 
+/* Optimization Experiment 1 
+	Commented out all blur and approximating it with less taxing effects
+*/
+
+.glass,
+.left-panel,
+.content-box,
+.pager-box,
+.contents-panel,
+.made-by {
+	background:
+		linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.09),
+			rgba(255, 255, 255, 0.015)
+		),
+		var(--glass-bg);
+	
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	
+	box-shadow:
+		0 10px 34px rgba(0, 0, 0, 0.55),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	
+}
