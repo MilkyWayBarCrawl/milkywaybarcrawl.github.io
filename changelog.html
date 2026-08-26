@@ -21,67 +21,82 @@
 
 		<!-- LEFT -->
 		<aside class="left-panel" id="leftPanel" role="navigation" aria-label="Chapters">
-			<h3>Milky Way Bar Crawl</h3>
-			<ul class="chap-list" id="chapList">
-				<li class="chap-item" data-href="intro.html">
-					<a class="chap-link" href="intro.html">1. Introduction</a>
-				</li>
 
-				<li class="chap-item" data-href="setup.html">
-					<a class="chap-link" href="setup.html">2. Setup</a>
-				</li>
+			<div class="nav-section open" data-section="main">
+				<button class="nav-section-header" type="button" aria-expanded="true">
+					<span>Milky Way Bar Crawl</span>
+					<span class="nav-section-caret">▾</span>
+				</button>
 				
-				<!-- Mod List is a vertical collapsible parent. Starts open. -->
-				<li class="chap-item parent open" id="modListParent" aria-expanded="true">
-					<div class="parent-header" role="button" tabindex="0" aria-expanded="true">
-						<button class="tog" aria-hidden="true">▾</button>
-						<span class="label">3. Modding</span>
-					</div>
-					<ul class="sub-list" role="menu" aria-label="Mod List subchapters">
-						<li class="sub-item" role="none"><a role="menuitem" href="me1.html">3.1. LE1</a></li>
-						<li class="sub-item" role="none"><a role="menuitem" href="me2.html">3.2. LE2</a></li>
-						<li class="sub-item" role="none"><a role="menuitem" href="me3.html">3.3. LE3</a></li>
-					</ul>
-				</li>
-				
-				<li class="chap-item" data-href="finish.html">
-					<a class="chap-link" href="finish.html">4. Finish</a>
-				</li>
-				
-				<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
-				
-				<h3>After Hours</h3>
-				
-				<li class="chap-item" data-href="extras.html">
-					<a class="chap-link" href="extras.html">5. Extras</a>
-				</li>
-				
-				<li class="chap-item" data-href="textures.html">
-					<a class="chap-link" href="textures.html">6. Textures</a>
-				</li>
-				
-				<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
-				
-				<h3>Appendices</h3>
-				
-				<li class="chap-item" data-href="questions.html">
-					<a class="chap-link" href="questions.html">7. Common Questions</a>
-				</li>
-				
-				<li class="chap-item" data-href="changelog.html">
-					<a class="chap-link" href="changelog.html">8. Changelog</a>
-				</li>
-				
-				<li class="chap-item" data-href="credits.html">
-					<a class="chap-link" href="credits.html">9. Credits</a>
-				</li>
-			</ul>
+				<ul class="chap-list">
+					<li class="chap-item" data-href="intro.html">
+						<a class="chap-link" href="intro.html">1. Introduction</a>
+					</li>
+
+					<li class="chap-item" data-href="setup.html">
+						<a class="chap-link" href="setup.html">2. Setup</a>
+					</li>
+
+					<li class="chap-item" data-href="me1.html">
+						<a class="chap-link" href="me1.html">3.1. LE1</a>
+					</li>
+
+					<li class="chap-item" data-href="me2.html">
+						<a class="chap-link" href="me2.html">3.2. LE2</a>
+					</li>
+
+					<li class="chap-item" data-href="me3.html">
+						<a class="chap-link" href="me3.html">3.3. LE3</a>
+					</li>
+
+					<li class="chap-item" data-href="finish.html">
+						<a class="chap-link" href="finish.html">4. Finish</a>
+					</li>
+				</ul>
+			</div>
 			
-			<hr style="color:#fff;width:75%;margin-left:0">
-			<hr style="color:#fff;width:52%;margin-left:0">
-            <p class="text-standard" style="text-align:left;">
-                <b>Last Updated:</b><br> July 2026 (v.2.0)
-            </p>
+			<div class="nav-section" data-section="after-hours">
+				<button class="nav-section-header" type="button" aria-expanded="false">
+					<span>After Hours</span>
+					<span class="nav-section-caret">▸</span>
+				</button>
+
+				<ul class="chap-list">
+					<li class="chap-item" data-href="extras.html">
+						<a class="chap-link" href="extras.html">5. Extras</a>
+					</li>
+
+					<li class="chap-item" data-href="textures.html">
+						<a class="chap-link" href="textures.html">6. Textures</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="nav-section" data-section="appendices">
+				<button class="nav-section-header" type="button" aria-expanded="false">
+					<span>Appendices</span>
+					<span class="nav-section-caret">▸</span>
+				</button>
+
+				<ul class="chap-list">
+					<li class="chap-item" data-href="questions.html">
+						<a class="chap-link" href="questions.html">7. Common Questions</a>
+					</li>
+
+					<li class="chap-item" data-href="changelog.html">
+						<a class="chap-link" href="changelog.html">8. Changelog</a>
+					</li>
+
+					<li class="chap-item" data-href="credits.html">
+						<a class="chap-link" href="credits.html">9. Credits</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="nav-updated" role="contentinfo">
+				Last Updated:<br>
+				August 2026 · v2.1
+			</div>
 			
 		</aside>
 		
@@ -91,20 +106,66 @@
 				
 				<div class="title-box">
 					<div id="titleBackground" class="title-bg"></div>
+					<button id="home" class="btn text-standard" aria-label="Return to Start"><a href="./index.html">Back to Start</a></button>
 					<h1 id="projectTitle">Appendices - Changelog</h1>
 					<button id="fontToggle" class="btn text-standard" aria-label="Toggle accessible fonts" title="Font Toggle">Aa</button>
+				</div>
+				
+				<div class="content-progress" aria-hidden="true">
+					<div class="content-progress-bar"></div>
 				</div>
 				
 				<article class="content-box" id="contentBox" tabindex="0" aria-labelledby="stepTitle">
 					
 					<!--
 					Comment on new version:
-					
+					- General performance improvements (I hope). Thanks to VentruePL for bringing this to my attention
+					- Reworked the Start page in preparation for future things
+					- Added a Return to Start button to every page
+					- Reworked the appearance and behavior of the left nav
+					- Added a progress bar to every page
+					- Improved right-side navigation scrolling behavior
+					- Fixed right-side navigation highlighting when jumping directly to entries
+					- Added "Explaining Choices" bonus sections to each game (only ME3 has an entry right now though)
 					
 					-->
 					
+					<!-- Changelog 6 -->
+					<section id="change6" class="panel" data-index="0">
+						<header class="panel-header" role="button" aria-expanded="true">
+							<h3>Changelog #6</h3>
+							<div class="caret">▾</div>
+						</header>
+						
+						<div class="panel-body">
+							<p class="text-standard">
+								<b>Milky Way Bar Crawl <code>Big-Rigs-Over-The-Road-Racing</code> / August 2026</b><br>
+								(v2.0 → v2.1)
+							</p>
+							
+							<hr style="color:#fff;width:37%;text-align:left;margin-left:0">
+							
+							<p class="text-standard">
+								
+								<b>Guide Related:</b><br><br>
+								- General performance improvements (I hope). Thanks to VentruePL for bringing this to my attention<br>
+								- Reworked the Start page in preparation for future things<br>
+								- Added a Return to Start button to every page<br>
+								- Reworked the appearance and behavior of the left nav<br>
+								- Added a progress bar to every page<br>
+								- Improved right-side navigation scrolling behavior<br>
+								- Fixed right-side navigation highlighting when jumping directly to entries<br>
+								- Added "Explaining Choices" bonus sections to each game (only ME3 has an entry right now though)<br><br>
+								
+								<b>That’s it for this not-so-small update!</b><br><br>
+								
+								<b>Next update</b>: Probably a week or two after N7 day! If I keep saying it, it'll be true eventually!!
+							</p>
+						</div>
+					</section>
+					
 					<!-- Changelog 5 -->
-					<section id="change5" class="panel" data-index="0">
+					<section id="change5" class="panel" data-index="1">
 						<header class="panel-header" role="button" aria-expanded="true">
 							<h3>Changelog #5</h3>
 							<div class="caret">▾</div>
@@ -135,7 +196,7 @@
 					</section>
 					
 					<!-- Changelog 4 -->
-					<section id="change4" class="panel" data-index="1">
+					<section id="change4" class="panel" data-index="2">
 						<header class="panel-header" role="button" aria-expanded="true">
 							<h3>Changelog #4</h3>
 							<div class="caret">▾</div>
@@ -206,7 +267,7 @@
 					</section>
 					
 					<!-- Changelog 3 -->
-					<section id="change3" class="panel" data-index="2">
+					<section id="change3" class="panel" data-index="3">
 						<header class="panel-header" role="button" aria-expanded="true">
 							<h3>Changelog #3</h3>
 							<div class="caret">▾</div>
@@ -268,7 +329,7 @@
 					</section>
 					
 					<!-- Changelog 2 (I am sure that will never trip me up lol) -->
-					<section id="change2" class="panel" data-index="3">
+					<section id="change2" class="panel" data-index="4">
 						<header class="panel-header" role="button" aria-expanded="true">
 							<h3>Changelog #2</h3>
 							<div class="caret">▾</div>
@@ -296,7 +357,7 @@
 					</section>
 					
 					<!-- Changelog 1 -->
-					<section id="change" class="panel" data-index="4">
+					<section id="change" class="panel" data-index="5">
 						<header class="panel-header" role="button" aria-expanded="false">
 							<h3>Changelog #1</h3>
 							<div class="caret">▾</div>

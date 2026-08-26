@@ -1,7 +1,4 @@
-/* =========
-	Milky Way Bar Crawl: Guide JS (clean rewrite)
-	- pain
-	======== */
+/* Milky Way Bar Crawl: Guide JS */
 
 /* ---------- Background helper ---------- */
 let bgLayer = document.getElementById('bgLayer');
@@ -12,7 +9,6 @@ function setBackground(src) {
 	if (!bgLayer) return;
 	bgLayer.style.backgroundImage = `url('${src}')`;
 }
-// setBackground('./custom/img/title-candidate3.jpg');
 
 /* ---------- Utilities ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -34,7 +30,7 @@ const expandAllBtn = $('#expandAllBtn');
 const closeAllBtn = $('#closeAllBtn');
 const prevPageBtn = $('#prevPageBtn');
 const nextPageBtn = $('#nextPageBtn');
-const chapList = $('#chapList');
+const chapList = $('#leftPanel');
 
 /* ===========================
 	PAGE SEQUENCE (Prev/Next)
@@ -51,29 +47,26 @@ function resolveHrefToBasename(href) {
 
 function buildLeftNavSequence() {
 	const seq = [];
-	if (!chapList) return seq;
+	const nav = $('#leftPanel');
+	if (!nav) return seq;
 
-	const anchors = $$('.chap-list a', chapList);
+	const anchors = $$('a[href]', nav);
 	const seen = new Set();
-	anchors.forEach(a => {
-		const li = a.closest('.chap-item');
-		if (!li) return;
-		const hrefRaw = a.getAttribute('href') || li.dataset.href || '';
-		const base = resolveHrefToBasename(hrefRaw);
-		const key = `${hrefRaw}|${base}|${(a.innerText || '').trim()}`;
-		if (seen.has(key)) return;
-		seen.add(key);
-		seq.push({ href: hrefRaw, base, label: (a.innerText || '').trim() });
-	});
 
-	// include any chap-item[data-href] without anchors (edge-case)
-	$$('.chap-item[data-href]', chapList).forEach(li => {
-		const dh = li.dataset.href;
-		if (!dh) return;
-		const dhBase = resolveHrefToBasename(dh);
-		if (!seq.some(s => s.base === dhBase)) {
-			seq.push({ href: dh, base: dhBase, label: dh });
-		}
+	anchors.forEach(a => {
+		const hrefRaw = a.getAttribute('href') || '';
+		const base = resolveHrefToBasename(hrefRaw);
+
+		if (!base) return;
+		if (seen.has(base)) return;
+
+		seen.add(base);
+
+		seq.push({
+			href: hrefRaw,
+			base,
+			label: (a.innerText || '').trim()
+		});
 	});
 
 	return seq;
@@ -159,9 +152,10 @@ nextPageBtn && nextPageBtn.addEventListener('click', (e) => {
 	}
 });
 
-/* =========================
-	PANELS & RIGHT CONTENTS
-	======================== */
+/* PANELS & RIGHT CONTENTS */
+let forcedActiveAnchor = null;
+let programmaticScroll = false;
+
 function getPanels() {
 	return contentBox ? $$('.panel', contentBox) : [];
 }
@@ -263,16 +257,31 @@ function buildContents() {
 				ca.dataset.index = i;
 				ca.dataset.anchorId = child.id;
 				ca.addEventListener('click', (ev) => {
-					ev.preventDefault();
-					const targetHash = `#${child.id}`;
-					if (location.hash !== targetHash) {
-						history.pushState(null, '', targetHash);
-					}
-					openPanel(i, { closeOthers: false, scrollOnOpen: false, behavior: 'smooth' }, () => {
-						const headerH = $('.panel-header', panels[i])?.offsetHeight || 0;
-						navigateToElement(child, headerH, 'smooth');
-					});
+				ev.preventDefault();
+
+				const targetHash = `#${child.id}`;
+
+				if (location.hash !== targetHash) {
+					history.pushState(null, '', targetHash);
+				}
+				
+				programmaticScroll = true;
+				forcedActiveAnchor = child.id;
+
+				openPanel(i, {
+					closeOthers: true,
+					scrollOnOpen: false,
+					behavior: 'smooth'
+				}, () => {
+					const headerH = $('.panel-header', panels[i])?.offsetHeight || 0;
+					navigateToElement(child, headerH, 'smooth');
+
+					// Let the smooth scroll finish before normal scroll detection takes over
+					setTimeout(() => {
+						programmaticScroll = false;
+					}, 1000); //I can only estimate but this feels mostly right
 				});
+			});
 				chi.appendChild(ca);
 				sub.appendChild(chi);
 			});
@@ -322,8 +331,15 @@ function navigateToElement(el, headerOffset = 0, behavior = 'smooth') {
 let scrollRaf = null;
 function scrollHandler() {
 	if (scrollRaf) return;
+
 	scrollRaf = requestAnimationFrame(() => {
+		if (!programmaticScroll) {
+			forcedActiveAnchor = null;
+		}
+
 		handleContentScroll();
+		updateContentProgress();
+
 		scrollRaf = null;
 	});
 }
@@ -332,65 +348,69 @@ contentBox && contentBox.addEventListener('scroll', scrollHandler, { passive: tr
 
 function handleContentScroll() {
 	panels = getPanels();
+
+	const openPanels = panels.filter(p => p.classList.contains('open'));
+	if (!openPanels.length) return;
+
 	const st = getScrollTop();
-	let idx = -1;
-	for (let i = panels.length - 1; i >= 0; i--) {
-		const pr = panels[i].getBoundingClientRect();
-		const root = getActiveScrollRoot();
-		const rootRect = (root === document.scrollingElement || root === document.documentElement) ? { top: 0 } : root.getBoundingClientRect();
-		const panelTopRel = st + (pr.top - rootRect.top);
-		if (st + 10 >= panelTopRel - 2) {
-			idx = i;
+	const root = getActiveScrollRoot();
+	const rootRect =
+		(root === document.scrollingElement || root === document.documentElement)
+			? { top: 0 }
+			: root.getBoundingClientRect();
+
+	let activePanel = openPanels[0];
+
+	for (const panel of openPanels) {
+		const rect = panel.getBoundingClientRect();
+		const panelTop = st + (rect.top - rootRect.top);
+
+		if (st + 10 >= panelTop - 2) {
+			activePanel = panel;
+		} else {
 			break;
 		}
 	}
-	if (idx === -1) idx = 0;
-	currentPanelIndex = idx;
-	updateActivePanel(idx);
+
+	const idx = panels.indexOf(activePanel);
+
+	currentPanelIndex = idx >= 0 ? idx : 0;
+
+	updateActivePanel(currentPanelIndex);
 	updateActiveLinks();
 }
 
 const debouncedEnsureNavVisible = debounce((link) => {
-	try {
-		if (!link) return;
-		const preferredContainer = link.closest('.contents-panel') || (contentsList && contentsList.closest('.contents-panel'));
-		const scrollRoot = preferredContainer || findVerticalScrollParent(link);
-		const isPageRoot = (scrollRoot === document.scrollingElement || scrollRoot === document.documentElement);
-		const PAD = 8;
+	if (!link) return;
 
-		try {
-			const linkRect = link.getBoundingClientRect();
-			const rootRect = isPageRoot ? { top: 0, bottom: window.innerHeight } : scrollRoot.getBoundingClientRect();
-			if (linkRect.top >= rootRect.top + PAD && linkRect.bottom <= rootRect.bottom - PAD) return;
+	const nav = contentsList?.closest('.contents-panel');
+	if (!nav) return;
 
-			if (!isPageRoot) {
-				const currentScroll = scrollRoot.scrollTop;
-				const offsetWithin = linkRect.top - rootRect.top;
-				const desiredTop = Math.max(0, Math.round(currentScroll + offsetWithin - PAD));
-				try {
-					scrollRoot.scrollTo({ top: desiredTop, behavior: 'smooth' });
-				} catch {
-					scrollRoot.scrollTop = desiredTop;
-				}
-				return;
-			}
-		} catch {
-			/* fallthrough */
-		}
+	const linkRect = link.getBoundingClientRect();
+	const navRect = nav.getBoundingClientRect();
+	const PAD = 12;
 
-		try {
-			link.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
-		} catch {
-			try {
-				link.scrollIntoView(true);
-			} catch {
-				/* ignore */
-			}
-		}
-	} catch (e) {
-		console.warn('[guide.js] ensureNavVisible error', e);
+	// Already comfortably visible
+	if (
+		linkRect.top >= navRect.top + PAD &&
+		linkRect.bottom <= navRect.bottom - PAD
+	) {
+		return;
 	}
-}, 120);
+
+	// Only scroll when the active link actually leaves the viewport.
+	if (linkRect.top < navRect.top + PAD) {
+		nav.scrollTo({
+			top: nav.scrollTop + (linkRect.top - navRect.top) - PAD,
+			behavior: 'smooth'
+		});
+	} else if (linkRect.bottom > navRect.bottom - PAD) {
+		nav.scrollTo({
+			top: nav.scrollTop + (linkRect.bottom - navRect.bottom) + PAD,
+			behavior: 'smooth'
+		});
+	}
+}, 150);
 
 function findVerticalScrollParent(el) {
 	if (!el) return document.scrollingElement || document.documentElement;
@@ -408,6 +428,22 @@ function findVerticalScrollParent(el) {
 function updateActiveLinks() {
 	if (!contentsList) return;
 	$$('.active', contentsList).forEach(a => a.classList.remove('active'));
+	
+	// An explicit anchor jump takes precedence until the user scrolls again.
+	if (forcedActiveAnchor) {
+		const forcedLink = contentsList.querySelector(
+			`a[href="#${forcedActiveAnchor}"]`
+		);
+
+		if (forcedLink) {
+			forcedLink.classList.add('active');
+			debouncedEnsureNavVisible(forcedLink);
+			return;
+		}
+
+		forcedActiveAnchor = null;
+	}
+	
 	panels = getPanels();
 	if (!panels.length) return;
 
@@ -464,6 +500,23 @@ function updateActivePanel(index) {
 	updatePageNavStates();
 }
 
+/* Scrolling Progress bar */
+const progressBar = $('.content-progress-bar');
+
+function updateContentProgress() {
+	if (!contentBox || !progressBar) return;
+
+	const maxScroll = contentBox.scrollHeight - contentBox.clientHeight;
+
+	if (maxScroll <= 0) {
+		progressBar.style.width = '0%';
+		return;
+	}
+
+	const progress = (contentBox.scrollTop / maxScroll) * 100;
+	progressBar.style.width = `${progress}%`;
+}
+
 /* =========================================
 	REBUILD (once, and on very few triggers)
 	======================================== */
@@ -487,99 +540,116 @@ const debouncedRebuildAll = debounce(rebuildAll, 140);
 rebuildAll();
 
 /* ========================================================================
-	LEFT NAV (current-page mark + parent collapse + cascading highlight)
+	LEFT NAV
+	- Current page highlighting
+	- Collapsible navigation sections
+	- Automatically opens the section containing the current page
 	======================================================================= */
+
 document.addEventListener('DOMContentLoaded', () => {
 	const currentFile = (basename(window.location.pathname) || '').toLowerCase();
 
-	// Mark current link (aria-current) without removing href
-	$$('.chap-link, .sub-list a, .chap-list a').forEach(a => {
+	const sections = $$('.nav-section');
+
+	/* ---------- Current page ---------- */
+
+	$$('.chap-list a').forEach(a => {
 		const hrefBase = (basename(a.getAttribute('href') || '') || '').toLowerCase();
+
 		if (hrefBase === currentFile) {
 			a.classList.add('disabled');
 			a.setAttribute('aria-current', 'page');
+
 			if (!a._guide_disabled_handler_added) {
 				a.addEventListener('click', (e) => {
 					e.preventDefault();
 				});
 				a._guide_disabled_handler_added = true;
 			}
+
 			const parentLi = a.closest('.chap-item');
 			if (parentLi) {
 				parentLi.classList.add('active');
 			}
+
+			/*
+			 If this is an LE page, also mark the Modding
+			 trail up to the current game.
+			 */
+			const lePages = ['me1.html', 'me2.html', 'me3.html'];
+			const leIndex = lePages.indexOf(currentFile);
+
+			if (leIndex >= 0) {
+				const moddingItem = a.closest('.chap-item');
+
+				if (moddingItem) {
+					moddingItem.classList.add('active');
+
+					const subLinks = $$('a', moddingItem);
+					subLinks.forEach((subLink, i) => {
+						if (i < leIndex) {
+							subLink.setAttribute('aria-current', 'step');
+						}
+					});
+				}
+			}
 		}
 	});
 
-	// Collapse/expand parent "Modding"
-	const parent = $('#modListParent');
-	if (parent) {
-		const header = $('.parent-header', parent);
-		const btn = $('.tog', parent);
-		const toggle = (ev) => {
-			if (ev) ev.preventDefault();
-			parent.classList.toggle('open');
-			const isOpen = parent.classList.contains('open');
-			parent.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-			if (btn) {
-				btn.textContent = isOpen ? '▾' : '▸';
-			}
-			debouncedRebuildAll();
-		};
+	/* ---------- Section toggles ---------- */
+
+	function setSectionState(section, open) {
+		const header = $('.nav-section-header', section);
+		const caret = $('.nav-section-caret', section);
+
+		section.classList.toggle('open', open);
+
 		if (header) {
-			header.addEventListener('click', toggle);
-			header.addEventListener('keydown', (ev) => {
-				if (ev.key === 'Enter' || ev.key === ' ') {
-					toggle(ev);
-				}
-			});
+			header.setAttribute('aria-expanded', open ? 'true' : 'false');
+		}
+
+		if (caret) {
+			caret.textContent = open ? '▾' : '▸';
 		}
 	}
 
-	/* --- Cascading highlight for LE pages (Option A) ---
-	   On me1.html → highlight Modding + 3.1
-	   On me2.html → highlight Modding + 3.1 + 3.2
-	   On me3.html → highlight Modding + 3.1 + 3.2 + 3.3
-	*/
-	/* --- Cascading highlight for LE pages (full-width trail; no color change) --- */
-	{
-		// If filenames are different, edit this array (order matters).
-		const LE_PAGE_ORDER = ['me1.html', 'me2.html', 'me3.html'];
+	sections.forEach(section => {
+		const header = $('.nav-section-header', section);
+		if (!header) return;
 
-		const leIndex = LE_PAGE_ORDER.indexOf(currentFile);
+		const initiallyOpen = section.classList.contains('open');
+		setSectionState(section, initiallyOpen);
 
-		if (leIndex >= 0 && parent) {
-			// ensure parent open + visually active (keeps existing styling hopefully)
-			parent.classList.add('open', 'active');
-			parent.setAttribute('aria-expanded', 'true');
-			const btn = parent.querySelector('.tog');
-			if (btn) btn.textContent = '▾';
+		header.addEventListener('click', () => {
+			const isOpen = section.classList.contains('open');
+			setSectionState(section, !isOpen);
+		});
+	});
 
-			const subLis = Array.from(parent.querySelectorAll('.sub-list li'));
-			const subAs = Array.from(parent.querySelectorAll('.sub-list a'));
+	/* ---------- Automatically open current section (and only the current section) ---------- */
+	
+	let currentSection = null;
+	
+	sections.forEach(section => {
+		const containsCurrentPage = $$('a', section).some(a => {
+			const hrefBase =
+				(basename(a.getAttribute('href') || '') || '').toLowerCase();
 
-			// mark trail on LI (full-width) and current on <a> (for semantics)
-			subLis.forEach((li, i) => {
-				li.classList.toggle('active', i <= leIndex);
-			});
+			return hrefBase === currentFile;
+		});
 
-			subAs.forEach((a, i) => {
-				if (i < leIndex) {
-					// trail steps (accessible progression semantics, no visual color change)
-					a.setAttribute('aria-current', 'step');
-				} else if (i === leIndex) {
-					// current page
-					a.setAttribute('aria-current', 'page');
-				} else {
-					a.removeAttribute('aria-current');
-				}
-			});
+		if (containsCurrentPage) {
+			currentSection = section;
 		}
-	}
-
+	});
+	
+	sections.forEach(section => {
+		setSectionState(section, section === currentSection);
+	});
+	
 	updatePageNavStates();
 	handleContentScroll();
-
+	
 	if (location.hash) {
 		setTimeout(() => {
 			window.dispatchEvent(new Event('hashchange'));

@@ -1,4 +1,9 @@
-/* guide-styles.css */
+/* guide.css - Optimization Attempt 1
+- Changed all backdrop-filter/saturate values as follows:
+9 -> 6
+10 -> 7
+115%/120% -> 110%
+*/
 
 @font-face {
 	font-family: 'ZenDots';
@@ -86,7 +91,7 @@ a {
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Single background layer — visible even if JS doesn't run */
+/* Single background layer - visible even if JS doesn't run */
 .bg-viewport {
 	position: fixed;
 	inset: 0;
@@ -102,9 +107,9 @@ a {
 	background-size: cover;
 	opacity: 1;
 	filter: blur(2px);
-	transition: filter 400ms ease, transform 600ms linear;
+	/*transition: filter 400ms ease, transform 600ms linear;
 	will-change: transform;
-	transform: translateZ(0);
+	transform: translateZ(0);*/
 }
 
 /* Tunable vignette */
@@ -139,7 +144,7 @@ a {
 .glass {
 	position: relative;
 	background: var(--glass-bg);
-	backdrop-filter: blur(9px) saturate(115%);
+	backdrop-filter: blur(6px) saturate(110%);
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -173,7 +178,7 @@ a {
 /* LEFT */
 .left-panel {
 	background: var(--glass-bg);
-	backdrop-filter: blur(9px) saturate(115%);
+	backdrop-filter: blur(6px) saturate(110%);
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -192,6 +197,68 @@ a {
 }
 
 /* ===== Left nav: chapters & sublist (clean, full-width cascade) ===== */
+
+	.nav-section {
+		margin-bottom: 14px;
+	}
+
+	.nav-section-header {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		padding: 8px 4px;
+		margin: 0;
+
+		background: none;
+		border: 0;
+
+		color: #fff;
+		font: inherit;
+		font-weight: 600;
+		text-align: left;
+
+		cursor: pointer;
+	}
+
+	.nav-section-header:hover {
+		color: rgb(var(--accent));
+	}
+
+	.nav-section-caret {
+		font-size: 0.85em;
+		opacity: 0.8;
+		transition: transform 0.2s ease;
+	}
+
+	.nav-section:not(.open) .nav-section-caret {
+		transform: rotate(0deg);
+	}
+
+	.nav-section .chap-list {
+		display: none;
+		margin-top: 4px;
+	}
+
+	.nav-section.open .chap-list {
+		display: block;
+	}
+
+	.nav-updated {
+		margin-top: auto;
+		padding: 10px 12px;
+		
+		background: var(--glass-bg);
+		border-radius: 12px;
+		border: 1px solid var(--glass-border);
+		
+		box-shadow: 0 8px 26px rgba(0,0,0,0.55);
+		
+		text-align: center;
+		color: #fff;
+		font-size: 0.9rem;
+	}
 
 .chap-list {
 	list-style: none;
@@ -224,7 +291,7 @@ a {
 	background: rgba(var(--accent), 0.20);
 }
 
-/* active parent row (your existing accent look) */
+/* active parent row */
 .chap-item.active > .chap-link,
 .chap-item.active > .parent-header {
 	background: linear-gradient(90deg, rgba(var(--accent), 0.25), rgba(var(--accent), 0.12));
@@ -320,7 +387,7 @@ a {
 	width: 100%;
 	height: var(--title-h);
 	background: var(--glass-bg);
-	backdrop-filter: blur(10px) saturate(120%);
+	backdrop-filter: blur(7px) saturate(110%);
 	border: 1px solid var(--glass-border);
 	border-radius: 12px;
 	border-bottom-left-radius: 0;
@@ -372,7 +439,7 @@ a {
 
 .content-box {
 	background: var(--glass-bg);
-	backdrop-filter: blur(10px) saturate(120%);
+	backdrop-filter: blur(7px) saturate(110%);
 	border: 1px solid var(--glass-border);
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -382,6 +449,23 @@ a {
 	max-height: calc(100vh - var(--title-h) - var(--pager-h) - (var(--gutter) * 3));
 	overflow: auto;
 	box-shadow: 0 12px 40px rgba(0,0,0,0.62);
+}
+
+.content-progress {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	height: 3px;
+	background: transparent;
+	pointer-events: none;
+}
+
+.content-progress-bar {
+	width: 0%;
+	height: 100%;
+	background: rgb(var(--accent));
+	transition: width 0.05s linear;
 }
 
 /* Panels */
@@ -448,7 +532,7 @@ a {
 	display: block;
 	padding-top: 8px;
 	margin-top: -8px;
-	scroll-margin-top: 78px; /* tune to your header height */
+	scroll-margin-top: 78px; /* tune to header height */
 }
 
 .anchor h4 a {
@@ -579,7 +663,7 @@ a {
 	align-items: flex-start;
 }
 
-/* scrollbar (content-box) — accent-driven thumb */
+/* scrollbar (content-box) - accent-driven thumb */
 .content-box::-webkit-scrollbar {
 	width: 12px;
 	background: transparent;
@@ -606,7 +690,7 @@ a {
 	width: 100%;
 	height: var(--pager-h);
 	background: var(--glass-bg);
-	backdrop-filter: blur(10px) saturate(120%);
+	backdrop-filter: blur(7px) saturate(110%);
 	border: 1px solid var(--glass-border);
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -632,7 +716,7 @@ a {
 	gap: 10px;
 }
 
-/* BUTTON BASE — grounded, subtle */
+/* BUTTON BASE - grounded, subtle */
 .pager .btn,
 #toggleTextureImgBtn,
 #toggleTextureImgBtn2,
@@ -651,7 +735,7 @@ a {
 	text-shadow: 0 1px 1px rgba(0,0,0,0.35); /* subtle outline for readability */
 }
 
-/* Hover — tactile, not brighter */
+/* Hover - tactile, not brighter */
 .pager .btn:hover,
 #toggleTextureImgBtn:hover,
 #toggleTextureImgBtn2:hover,
@@ -663,7 +747,7 @@ a {
 	transform: translateY(-1px); /* subtle lift */
 }
 
-/* Active (pressed) — slightly pushed down */
+/* Active (pressed) - slightly pushed down */
 .pager .btn:active,
 #toggleTextureImgBtn:active,
 #toggleTextureImgBtn2:active,
@@ -674,7 +758,7 @@ a {
 	box-shadow: inset 0 -2px 4px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.28);
 }
 
-/* Focus ring — subtle halo */
+/* Focus ring - subtle halo */
 .pager .btn:focus,
 #toggleTextureImgBtn:focus,
 #toggleTextureImgBtn2:focus,
@@ -686,7 +770,7 @@ a {
 	border-color: rgba(var(--accent),0.98);
 }
 
-/* Disabled — muted, flat */
+/* Disabled - muted, flat */
 .pager .btn.disabled,
 #toggleTextureImgBtn.disabled,
 #toggleTextureImgBtn2.disabled,
@@ -721,7 +805,7 @@ a {
 
 .contents-panel {
 	background: var(--glass-bg);
-	backdrop-filter: blur(9px) saturate(115%);
+	backdrop-filter: blur(6px) saturate(110%);
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 12px;
@@ -751,8 +835,9 @@ a {
 	color: #dfefff;
 }
 
+/* set to 0.02 before for whatever reason. sublist a few lines down as well */
 .contents-list a:hover {
-	background: rgba(var(--accent), 0.04);
+	background: rgba(var(--accent), 0.16);
 }
 
 .contents-list a.active {
@@ -779,7 +864,7 @@ a {
 }
 
 .contents-sublist a:hover {
-	background: rgba(var(--accent), 0.03);
+	background: rgba(var(--accent), 0.16);
 }
 
 /* active state for sublinks */
@@ -792,7 +877,7 @@ a {
 /* made-by: now uses accent color for heart & name by default */
 .made-by {
 	background: var(--glass-bg);
-	backdrop-filter: blur(9px) saturate(115%);
+	backdrop-filter: blur(6px) saturate(110%);
 	border-radius: 12px;
 	border: 1px solid var(--glass-border);
 	padding: 8px 12px;
@@ -915,6 +1000,26 @@ a {
 	border-radius: inherit;
 }
 
+.title-box #home {
+	position: absolute;
+	top: 50%;
+	left: 1.5rem;
+	transform: translateY(-50%);
+	padding: 0.3rem 0.6rem;
+	font-size: 1rem;
+	opacity: 0.85;
+	transition: opacity 0.2s ease;
+	background: rgba(var(--accent), 0.95);
+	color: var(--accent-fore);
+	border: 1px solid rgba(0,0,0,0.28);
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.title-box #home:hover {
+	opacity: 1;
+}
+
 /* Font toggle in title */
 .title-box #fontToggle {
 	position: absolute;
@@ -966,7 +1071,7 @@ body.accessible-fonts .content-box h5 {
 /* right column: ensure contents panel is sticky and has a stable max-height */
 .right-panel .contents-panel {
 	position: sticky;
-	top: calc(var(--gutter) * 1.6); /* sit below page padding — tune as needed */
+	top: calc(var(--gutter) * 1.6); /* sit below page padding */
 	max-height: calc(100vh - (var(--gutter) * 3.2) - 2rem); /* keep inside viewport */
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch; /* smoother on iOS */
@@ -1027,7 +1132,7 @@ body.accessible-fonts .content-box h5 {
 
 /* ---------- GLIGHTBOX: frosted, rounded caption ---------- */
 
-/* Scope to GLightbox wrapper for specificity (most builds use this id) */
+/* Scope to GLightbox wrapper for specificity */
 #glightbox .gdesc,
 #glightbox .gdesc-inner {
 	background: var(--glass-bg);
@@ -1038,8 +1143,8 @@ body.accessible-fonts .content-box h5 {
 	position: relative;
 	overflow: hidden;
 	box-shadow:
-		0 10px 28px rgba(0,0,0,0.55),          /* grounding shadow */
-		0 0 18px rgba(var(--accent), 0.14);     /* soft accent glow */
+		0 10px 28px rgba(0,0,0,0.55), /* grounding shadow */
+		0 0 18px rgba(var(--accent), 0.14); /* soft accent glow */
 }
 
 /* Make the visible caption look like a rounded frosted card
@@ -1118,7 +1223,7 @@ body.accessible-fonts .content-box h5 {
 	box-shadow: none !important; /* remove any white block shadow */
 }
 
-/* style the inner caption card as your glass panel */
+/* style the inner caption card as glass panel */
 .gcontainer .gdesc-inner {
 	background: var(--glass-bg) !important;
 	backdrop-filter: blur(10px) saturate(120%) !important;

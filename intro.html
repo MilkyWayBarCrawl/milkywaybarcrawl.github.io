@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="./custom/css/guide.css" />
 </head>
 <body>
-
 	<!-- Background (single reliable layer) -->
 	<div class="bg-viewport" aria-hidden="true">
 		<div id="bgLayer" class="bg-layer" style="background-image:url('./custom/img/background/bg-galaxy-1.jpg');"></div>
@@ -19,70 +18,85 @@
 	<div class="bg-vignette" aria-hidden="true"></div>
 
 	<div class="layout" id="layoutRoot">
-
+		
 		<!-- LEFT -->
 		<aside class="left-panel" id="leftPanel" role="navigation" aria-label="Chapters">
-			<h3>Milky Way Bar Crawl</h3>
-			<ul class="chap-list" id="chapList">
-				<li class="chap-item" data-href="intro.html">
-					<a class="chap-link" href="intro.html">1. Introduction</a>
-				</li>
 
-				<li class="chap-item" data-href="setup.html">
-					<a class="chap-link" href="setup.html">2. Setup</a>
-				</li>
+			<div class="nav-section open" data-section="main">
+				<button class="nav-section-header" type="button" aria-expanded="true">
+					<span>Milky Way Bar Crawl</span>
+					<span class="nav-section-caret">▾</span>
+				</button>
 				
-				<!-- Mod List is a vertical collapsible parent. Starts open. -->
-				<li class="chap-item parent open" id="modListParent" aria-expanded="true">
-					<div class="parent-header" role="button" tabindex="0" aria-expanded="true">
-						<button class="tog" aria-hidden="true">▾</button>
-						<span class="label">3. Modding</span>
-					</div>
-					<ul class="sub-list" role="menu" aria-label="Mod List subchapters">
-						<li class="sub-item" role="none"><a role="menuitem" href="me1.html">3.1. LE1</a></li>
-						<li class="sub-item" role="none"><a role="menuitem" href="me2.html">3.2. LE2</a></li>
-						<li class="sub-item" role="none"><a role="menuitem" href="me3.html">3.3. LE3</a></li>
-					</ul>
-				</li>
-				
-				<li class="chap-item" data-href="finish.html">
-					<a class="chap-link" href="finish.html">4. Finish</a>
-				</li>
-				
-				<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
-				
-				<h3>After Hours</h3>
-				
-				<li class="chap-item" data-href="extras.html">
-					<a class="chap-link" href="extras.html">5. Extras</a>
-				</li>
-				
-				<li class="chap-item" data-href="textures.html">
-					<a class="chap-link" href="textures.html">6. Textures</a>
-				</li>
-				
-				<hr style="color:#fff;width:99%;text-align:left;margin-left:0">
-				
-				<h3>Appendices</h3>
-				
-				<li class="chap-item" data-href="questions.html">
-					<a class="chap-link" href="questions.html">7. Common Questions</a>
-				</li>
-				
-				<li class="chap-item" data-href="changelog.html">
-					<a class="chap-link" href="changelog.html">8. Changelog</a>
-				</li>
-				
-				<li class="chap-item" data-href="credits.html">
-					<a class="chap-link" href="credits.html">9. Credits</a>
-				</li>
-			</ul>
+				<ul class="chap-list">
+					<li class="chap-item" data-href="intro.html">
+						<a class="chap-link" href="intro.html">1. Introduction</a>
+					</li>
+
+					<li class="chap-item" data-href="setup.html">
+						<a class="chap-link" href="setup.html">2. Setup</a>
+					</li>
+
+					<li class="chap-item" data-href="me1.html">
+						<a class="chap-link" href="me1.html">3.1. LE1</a>
+					</li>
+
+					<li class="chap-item" data-href="me2.html">
+						<a class="chap-link" href="me2.html">3.2. LE2</a>
+					</li>
+
+					<li class="chap-item" data-href="me3.html">
+						<a class="chap-link" href="me3.html">3.3. LE3</a>
+					</li>
+
+					<li class="chap-item" data-href="finish.html">
+						<a class="chap-link" href="finish.html">4. Finish</a>
+					</li>
+				</ul>
+			</div>
 			
-			<hr style="color:#fff;width:75%;margin-left:0">
-			<hr style="color:#fff;width:52%;margin-left:0">
-			<p class="text-standard" style="text-align:left;">
-				<b>Last Updated:</b><br> July 2026 (v.2.0)
-			</p>
+			<div class="nav-section" data-section="after-hours">
+				<button class="nav-section-header" type="button" aria-expanded="false">
+					<span>After Hours</span>
+					<span class="nav-section-caret">▸</span>
+				</button>
+
+				<ul class="chap-list">
+					<li class="chap-item" data-href="extras.html">
+						<a class="chap-link" href="extras.html">5. Extras</a>
+					</li>
+
+					<li class="chap-item" data-href="textures.html">
+						<a class="chap-link" href="textures.html">6. Textures</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="nav-section" data-section="appendices">
+				<button class="nav-section-header" type="button" aria-expanded="false">
+					<span>Appendices</span>
+					<span class="nav-section-caret">▸</span>
+				</button>
+
+				<ul class="chap-list">
+					<li class="chap-item" data-href="questions.html">
+						<a class="chap-link" href="questions.html">7. Common Questions</a>
+					</li>
+
+					<li class="chap-item" data-href="changelog.html">
+						<a class="chap-link" href="changelog.html">8. Changelog</a>
+					</li>
+
+					<li class="chap-item" data-href="credits.html">
+						<a class="chap-link" href="credits.html">9. Credits</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="nav-updated" role="contentinfo">
+				Last Updated:<br>
+				August 2026 · v2.1
+			</div>
 			
 		</aside>
 
@@ -91,15 +105,19 @@
 			<div class="content-shell" id="contentShell">
 
 				<div class="title-box">
-					<!-- <div id="titleBackground" class="title-bg" style="background-image:url('./custom/img/title-candidate2.jpg');"></div> -->
 					<div id="titleBackground" class="title-bg"></div>
+					<button id="home" class="btn text-standard" aria-label="Return to Start"><a href="./index.html">Back to Start</a></button>
 					<h1 id="projectTitle">Milky Way Bar Crawl - Introduction</h1>
 					<button id="fontToggle" class="btn text-standard" aria-label="Toggle accessible fonts" title="Font Toggle">Aa</button>
 				</div>
-
+				
+				<div class="content-progress" aria-hidden="true">
+						<div class="content-progress-bar"></div>
+				</div>
+				
 				<article class="content-box" id="contentBox" tabindex="0" aria-labelledby="projectTitle">
-
-					<!-- Panels (prefixed ids to keep them page-scoped) -->
+					
+					<!-- Panels -->
 					<section id="intro-preamble" class="panel open" data-index="0">
 						<header class="panel-header" role="button" aria-expanded="true">
 							<h3>Welcome...</h3>
