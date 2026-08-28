@@ -13,6 +13,12 @@
 	<body>
 		<div class="title-screen" id="titleBackground"></div>
 		
+		<!-- <video class="ambient-background" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+			<source src="./custom/video/mwbc-loop-2.webm" type="video/webm">
+		</video>
+		
+		<div class="background-overlay"></div> -->
+		
 		<header class="site-header">
 			<a class="site-logo" href="https://varkorax.github.io" aria-label="Milky Way Bar Crawl home" target="_blank">
 				<img src="./custom/favicon.svg" alt="Milky Way Bar Crawl">
@@ -99,6 +105,61 @@
 			</div>
 			
 		</div>
+		
+		<div class="footer-wrapper" aria-hidden="false">
+			<div class="footer-box" role="contentinfo">
+				<button class="ea-note-trigger" type="button" aria-haspopup="dialog">
+					A Personal Note Regarding EA
+				</button>
+			</div>
+		</div>
+		
+		<div class="ea-modal" id="ea-note-modal" role="dialog" aria-modal="true" aria-labelledby="ea-note-title" hidden>
+			<div class="ea-modal-backdrop"></div>
+			
+			<div class="ea-modal-content">
+				<button class="ea-modal-close" type="button" aria-label="Close">
+					×
+				</button>
+				
+				<h2 id="ea-note-title" class="sr-only">A Personal Note Regarding EA</h2>
+				
+				<iframe
+					src="ea-note.html"
+					title="A Personal Note Regarding EA"
+					loading="lazy">
+				</iframe>
+			</div>
+		</div>
+		
+		<script>
+		const eaModal = document.getElementById('ea-note-modal');
+		const eaTrigger = document.querySelector('.ea-note-trigger');
+		const eaClose = document.querySelector('.ea-modal-close');
+		const eaBackdrop = document.querySelector('.ea-modal-backdrop');
+
+		function openEaNote() {
+			eaModal.hidden = false;
+			document.body.style.overflow = 'hidden';
+			eaClose.focus();
+		}
+
+		function closeEaNote() {
+			eaModal.hidden = true;
+			document.body.style.overflow = '';
+			eaTrigger.focus();
+		}
+
+		eaTrigger.addEventListener('click', openEaNote);
+		eaClose.addEventListener('click', closeEaNote);
+		eaBackdrop.addEventListener('click', closeEaNote);
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && !eaModal.hidden) {
+				closeEaNote();
+			}
+		});
+		</script>
 		
 		<script src="./custom/js/title.js"></script>
 	</body>

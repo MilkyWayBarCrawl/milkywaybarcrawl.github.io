@@ -1,6 +1,6 @@
 /* title.css - Version 2 - Expanded to accommodate additional guides down the line */
 
-/* Font */
+/* Fonts */
 
 @font-face {
     font-family: 'ZenDots';
@@ -9,7 +9,29 @@
     font-style: normal;
 }
 
+@font-face {
+	font-family: 'Quicksand';
+	src: url('../fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
 /* Basics */
+
+:root {
+	/* Accent color as three channel components so pages can override easily.
+	   Default is a slightly darker orange for better contrast. */
+	--accent-r: 230;   /* darker orange */
+	--accent-g: 130;
+	--accent-b: 60;
+	--accent: var(--accent-r),var(--accent-g),var(--accent-b);
+
+	--muted: #b7cfe9;
+	--scrollbar-bg: rgba(40,70,140,0.08);
+	--bg-fallback: #071021;
+
+	/* Vignette tuning */
+	--vignette-weak: rgba(0,0,0,0.36);
+	--vignette-strong: rgba(0,0,0,0.86);
+}
 
 html,
 body {
@@ -23,6 +45,31 @@ body {
 
 nav {
     font-family: 'ZenDots', sans-serif;
+}
+
+.ambient-background {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -2;
+
+    pointer-events: none;
+}
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    z-index: -1;
+
+    pointer-events: none;
 }
 
 /* Glass header */
@@ -229,8 +276,8 @@ nav {
     width: 110%;
     height: 110%;
 
-    background: url('../img/background/bg-galaxy-1.jpg') center / cover no-repeat;
-    filter: blur(2px);
+    background: url('../img/background/bg-galaxy-1-blur.jpg') center / cover no-repeat;
+    /* filter: blur(2px); */
 
     z-index: -1;
 
@@ -292,8 +339,8 @@ nav {
 
     background: rgba(15, 20, 35, 0.35);
 
-    -webkit-backdrop-filter: blur(6px) saturate(110%);
-    backdrop-filter: blur(6px) saturate(110%);
+    /*-webkit-backdrop-filter: blur(6px) saturate(110%);
+    backdrop-filter: blur(6px) saturate(110%);*/
 
     border: 1px solid rgba(255, 255, 255, 0.04);
 
@@ -728,4 +775,246 @@ h2 {
         width: 40px;
         height: 30px;
     }
+}
+
+/* EA Note */
+
+/* ------------- Footer: moved to bottom-right ------------- */
+.footer-wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 32px;
+
+    width: auto;
+    height: 128px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-box {
+    display: inline-block;
+
+    padding: 9px 10px;
+
+    border-radius: 12px 12px 0 0;
+
+    background: rgba(25, 30, 45, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(255, 255, 255, 0.025);
+
+    pointer-events: auto;
+
+    color: #fff;
+    font-size: 0.92em;
+    white-space: nowrap;
+
+    transform: translateY(0);
+    transition:
+        transform 320ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+}
+
+.ea-note-trigger {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 10px;
+    margin: 0;
+
+    background: rgba(255,255,255,0.045);
+    border-radius: 7px;
+
+    color: rgba(255,255,255,0.82);
+    font: inherit;
+    font-size: 0.92em;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.ea-note-trigger:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.ea-note-trigger:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.7);
+    outline-offset: 3px;
+}
+
+.ea-note-trigger::after {
+    content: " →";
+    display: inline-block;
+    margin-left: 3px;
+    opacity: 0.45;
+    transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.ea-note-trigger:hover::after {
+    opacity: 0.85;
+    transform: translateX(2px);
+}
+
+.ea-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+.ea-modal[hidden] {
+    display: none;
+}
+
+.ea-modal-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.ea-modal-content {
+    position: relative;
+    z-index: 1;
+
+    width: min(1000px, 100%);
+    height: min(1000px, 90vh);
+
+    overflow: hidden;
+
+    border-radius: 14px;
+    background: rgba(20, 20, 20, 0.92);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.65);
+}
+
+.ea-modal-content iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+.ea-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+
+    font-size: 26px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.ea-modal-close:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+#ea-note-title {
+	padding: 10px;
+}
+
+.ea-note {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.ea-note-image {
+    display: block;
+
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+
+    margin: 0 auto;
+
+    border-radius: 8px;
+}
+
+.ea-note-text {
+    max-width: 1000px;
+    margin: 20px auto 0;
+    padding: 12px 16px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+
+    background: rgba(255,255,255,0.035);
+	
+	font-family: 'Quicksand';
+}
+
+.ea-note-text summary {
+    cursor: pointer;
+    color: rgba(255,255,255,0.75);
+    user-select: none;
+}
+
+.ea-note-text summary:hover {
+    color: #fff;
+}
+
+.ea-note-text-content {
+    margin-top: 18px;
+
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+}
+
+.ea-note-final {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+.ea-note::-webkit-scrollbar {
+	width: 12px;
+	background: transparent;
+}
+
+.ea-note::-webkit-scrollbar-track {
+	background: var(--scrollbar-bg);
+	border-radius: 8px;
+}
+
+.ea-note::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, rgba(var(--accent),0.85), rgba(var(--accent),0.65));
+	border-radius: 8px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.45);
 }
